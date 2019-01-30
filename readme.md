@@ -7,6 +7,10 @@
     - \q
 - Copy .env.example to .env
 - Configure your .env file
+    - APP_NAME=Internship
+    - DB_DATABASE=internship
+    - DB_USERNAME=root
+    - DB_PASSWORD=null
 - Run 'composer update' from the projects root folder.
 - From the projects root folder run 'php artisan key:generate'
 - From the projects root folder run 'php artisan migrate'
