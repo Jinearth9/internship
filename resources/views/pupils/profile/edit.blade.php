@@ -19,7 +19,7 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
+                                    <input type="text" id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required>
+                                    <input type="text" id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}">
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                 <div class="col-md-6">
-                                    <input type="password" id="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                    <input type="password" id="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
 
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
@@ -58,14 +58,14 @@
                             <div class="form-group row">
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
                                 <div class="col-md-6">
-                                    <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required>
+                                    <input type="password" id="password-confirm" class="form-control" name="password_confirmation">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="hobbies" class="col-md-4 col-form-label text-md-right">Hobbies</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="hobbies" class="form-control{{ $errors->has('hobbies') ? ' is-invalid' : '' }}" name="hobbies" value="{{ $profile->hobbies }}" required>
+                                    <input type="text" id="hobbies" class="form-control{{ $errors->has('hobbies') ? ' is-invalid' : '' }}" name="hobbies" value="{{ $profile->hobbies }}">
 
                                     @if ($errors->has('hobbies'))
                                         <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
                             <div class="form-group row">
                                 <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ $profile->description }}" required>
+                                    <input type="text" id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ $profile->description }}">
 
                                     @if ($errors->has('description'))
                                         <span class="invalid-feedback" role="alert">
@@ -91,7 +91,7 @@
                             <div class="form-group row">
                                 <label for="pitch-text" class="col-md-4 col-form-label text-md-right">Pitch text</label>
                                 <div class="col-md-6">
-                                    <textarea name="pitch_text" id="pitch-text" class="form-control{{ $errors->has('pitch_text') ? ' is-invalid' : '' }}" required>{{ $profile->pitch_text }}</textarea>
+                                    <textarea name="pitch_text" id="pitch-text" class="form-control{{ $errors->has('pitch_text') ? ' is-invalid' : '' }}">{{ $profile->pitch_text }}</textarea>
 
                                     @if ($errors->has('pitch_text'))
                                         <span class="invalid-feedback" role="alert">
@@ -104,7 +104,7 @@
                             <div class="form-group row">
                                 <label for="experience" class="col-md-4 col-form-label text-md-right">Experience</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="experience" class="form-control{{ $errors->has('experience') ? ' is-invalid' : '' }}" name="experience" value="{{ $profile->experience }}" required>
+                                    <input type="text" id="experience" class="form-control{{ $errors->has('experience') ? ' is-invalid' : '' }}" name="experience" value="{{ $profile->experience }}">
 
                                     @if ($errors->has('experience'))
                                         <span class="invalid-feedback" role="alert">

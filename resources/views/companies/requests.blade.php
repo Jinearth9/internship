@@ -20,14 +20,14 @@
                                     <div>
                                         <div class="btn-toolbar">
                                             @if ($request->pivot->state == 0)
-                                                <a href="{{ route('company.accept', ['companyPupil' => $request->pivot->id]) }}" class="btn btn-primary" style="width: 100%;">Accept</a>
+                                                <a href="{{ route('company.acceptRequests', ['companyPupil' => $request->pivot->id]) }}" class="btn btn-primary" style="width: 100%;">Accept</a>
                                             @else
                                                 <button type="button" class="btn btn-success" style="width: 100%;" disabled>Accepted</button>
                                             @endif
                                         </div>
                                         @if (!$request->pivot->state == 1)
                                             <div class="btn-toolbar mt-2">
-                                                <a href="{{ route('company.decline', ['companyPupil' => $request->pivot->id]) }}" class="btn btn-danger" style="width: 100%;">Decline</a>
+                                                <a href="{{ route('company.declineRequests', ['companyPupil' => $request->pivot->id]) }}" class="btn btn-danger" style="width: 100%;">Decline</a>
                                             </div>
                                         @endif
                                     </div>

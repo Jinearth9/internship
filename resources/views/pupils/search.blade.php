@@ -24,16 +24,30 @@
                                 <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                     {{ $company->name }}
 
-                                    @if (count($company->company->pupils) > 0)
-                                        @foreach ($company->company->pupils as $pupil)
-                                            @if ($pupil->user_id == Auth::user()->id)
-                                                @if ($pupil->pivot->state == 0)
+                                    @if (count(Auth::user()->pupil->companies) > 0)
+                                        @php
+                                            $active = false;
+                                        @endphp
+
+                                        @foreach (Auth::user()->pupil->companies as $auth_company)
+                                            @if ($auth_company->id == $company->company->id)
+                                                @php
+                                                    $active = true;
+                                                @endphp
+
+                                                @if ($auth_company->pivot->state == 0)
                                                     <button type="button" class="btn btn-warning" disabled>Applying...</button>
                                                 @else
                                                     <button type="button" class="btn btn-success" disabled>Applied</button>
                                                 @endif
+
+                                                @break
                                             @endif
                                         @endforeach
+
+                                        @if (!$active)
+                                            <a href="{{ route('pupil.apply', ['company' => $company->company->id]) }}" class="btn btn-primary">Apply</a>
+                                        @endif
                                     @else
                                         <a href="{{ route('pupil.apply', ['company' => $company->company->id]) }}" class="btn btn-primary">Apply</a>
                                     @endif

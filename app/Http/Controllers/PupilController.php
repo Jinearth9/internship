@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\CompanyPupil;
 use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -42,7 +44,32 @@ class PupilController extends Controller
 
     public function companyView()
     {
-        return view('pupils.companies');
+        foreach (Auth::user()->pupil->companies as $company) {
+            if ($company->pivot->state == 1) {
+                $company_id = $company->user_id;
+                $companies[] = User::find($company_id);
+            }
+        }
+        return view('pupils.companies', [
+            'companies' => Auth::user()->pupil->companies
+        ]);
+    }
+
+    public function sendHours(Request $request, CompanyPupil $companyPupil)
+    {
+        $request->validate([
+            'week'        => 'required|numeric',
+            'hours'       => 'required|numeric',
+            'description' => 'required|string'
+        ]);
+
+        $companyPupil->hour()->create([
+            'week_number'  => $request->week,
+            'hours_worked' => $request->hours,
+            'description'  => $request->description
+        ]);
+
+        return redirect()->back();
     }
 
     public function profileView()

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CompanyPupil;
+use App\Hour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,7 @@ class CompanyController extends Controller
         return view('companies.requests', ['requests' => $requests]);
     }
 
-    public function accept(CompanyPupil $companyPupil)
+    public function acceptRequests(CompanyPupil $companyPupil)
     {
         $companyPupil->update([
             'state' => 1
@@ -31,7 +32,7 @@ class CompanyController extends Controller
         return redirect()->back();
     }
 
-    public function decline(CompanyPupil $companyPupil)
+    public function declineRequests(CompanyPupil $companyPupil)
     {
         $companyPupil->delete();
 
@@ -40,12 +41,40 @@ class CompanyController extends Controller
 
     public function hoursView()
     {
-        return view('companies.hours');
+        return view('companies.hours', [
+            'requests' => Auth::user()->company->pupils
+        ]);
+    }
+
+    public function acceptHours(Hour $hour)
+    {
+        $hour->update([
+            'state' => 1
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function declineHours(Hour $hour)
+    {
+        $hour->delete();
+
+        return redirect()->back();
     }
 
     public function pupilsView()
     {
-        return view('companies.pupils');
+        return view('companies.pupils', [
+            'pupils' => Auth::user()->company->pupils
+        ]);
+    }
+
+    public function remove(CompanyPupil $companyPupil)
+    {
+        $companyPupil->hour->delete();
+        $companyPupil->delete();
+
+        return redirect()->back();
     }
 
     public function profileView()

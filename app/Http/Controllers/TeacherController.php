@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pupil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,22 @@ class TeacherController extends Controller
 
     public function pupilsView()
     {
-        return view('teachers.pupils');
+        $pupils = Pupil::all();
+
+        foreach ($pupils as $pupil) {
+            $total = 0;
+
+            foreach ($pupil->companies as $company) {
+                if ($company->pivot->hour->state == 1) {
+                    $total = $total + $company->pivot->hour->hours_worked;
+                }
+            }
+
+            $pupils_array[$pupil->user->name] = $total;
+        }
+        arsort($pupils_array);
+
+        return view('teachers.pupils', ['pupils' => $pupils_array]);
     }
 
     public function profileView()
