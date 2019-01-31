@@ -104,8 +104,8 @@ class CompanyController extends Controller
                 'password'       => 'required|string|min:6|confirmed',
                 'phone_number'   => 'required|numeric',
                 'branch'         => 'required|string',
-                'description'    => 'string',
-                'employs_number' => 'numeric'
+                'description'    => 'nullable|string',
+                'employs_number' => 'nullable|numeric'
             ]);
         } else {
             $request->validate([
@@ -113,8 +113,8 @@ class CompanyController extends Controller
                 'password'       => 'required|string|min:6|confirmed',
                 'phone_number'   => 'required|numeric',
                 'branch'         => 'required|string',
-                'description'    => 'string',
-                'employs_number' => 'numeric'
+                'description'    => 'nullable|string',
+                'employs_number' => 'nullable|numeric'
             ]);
         }
 
